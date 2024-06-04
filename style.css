@@ -1,0 +1,67 @@
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+button {
+    padding: 0;
+    border: solid 1px;
+    font-size: 30px;
+    border-radius: 10px;
+    background-color: black;
+}
+
+#container {
+    height: 550px;
+    width: 450px;
+    border: solid 1px black;
+    display: flex;
+    flex-direction: column;
+}
+
+.display {
+    height: 100px;
+    border-bottom: solid 1px black;
+    flex: auto;
+    
+}
+
+.main-content {
+    height: 410px;
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+}
+
+.bottom, .utility, .operators, .digits {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.zero {
+    flex: 2;
+}
+
+.digits, .zero, .decimal {
+    background-color: #c2d4b1;
+}
+
+.operators, .equals {
+    background-color: #dd2d00;
+}
+
+.utility {
+    background-color: #a6b992;
+}

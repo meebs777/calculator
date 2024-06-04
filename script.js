@@ -16,9 +16,7 @@ const multiply = function(a,b) {
 
 let firstCalcValue, secondCalcValue, operator;
 
-firstCalcValue = prompt();
-operator = prompt();
-secondCalcValue = prompt();
+
 
 
 const operate = function(firstNum,secondNum,operate) {
@@ -42,5 +40,3 @@ const operate = function(firstNum,secondNum,operate) {
 	}
 	return operation;
 }
-
-console.log(operate(firstCalcValue,secondCalcValue,operator));
