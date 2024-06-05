@@ -88,6 +88,7 @@ const clearDisplay = function () {
 			equalsCheck = true;
 			operator = operators.textContent;
 			operatorPressed = true;
+			//Logic to make sure calculator does not evaluate more than a single pair of numbers at a time
 			if(operator !== operatorCheck && firstCalcValue !==0) {
 				display.textContent = operate(firstCalcValue,secondCalcValue,operatorCheck);
 				fixOverflow();
