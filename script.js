@@ -7,12 +7,19 @@ const subtract = function(a,b) {
 };
 
 const divide = function(a,b) {
+	if (a === 0 && b === 0 ){
+		return "LOL";
+	}
 	return a/b;
 };
 
 const multiply = function(a,b) {
   return a*b;
 };
+
+const percentage = function () {
+	display.textContent = display.textContent/100;
+}
 
 let displayValue, firstCalcValue = 0 , secondCalcValue = 0, operator;
 let operatorPressed, operatorCheck;
@@ -56,15 +63,8 @@ const fillDisplay = function() {
 			} else {
 				display.textContent += digit.textContent;
 			}
-			displayValue = parseInt(display.textContent);
+			displayValue = parseFloat(display.textContent);
 			secondCalcValue = displayValue;
-
-			//Logic to get numbers for operations
-			// if(firstCalcValue === 0) {
-			// 	firstCalcValue = displayValue;
-			// } else {
-			// 	secondCalcValue = displayValue;
-			// }
 		})
 	})
 }
@@ -74,7 +74,7 @@ const clearDisplay = function () {
 	const clear = document.querySelector(".utility");
 	clear.addEventListener("click", () => {
 		display.textContent = "0";
-		displayValue = parseInt(display.textContent);
+		displayValue = parseFloat(display.textContent);
 		firstCalcValue = 0;
 		secondCalcValue = 0;
 	})
@@ -90,12 +90,12 @@ const clearDisplay = function () {
 			operatorPressed = true;
 			if(operator !== operatorCheck && firstCalcValue !==0) {
 				display.textContent = operate(firstCalcValue,secondCalcValue,operatorCheck);
-				firstCalcValue = parseInt(display.textContent);
+				firstCalcValue = parseFloat(display.textContent);
 			}
 			if (firstCalcValue !== 0 && operator === operatorCheck) {
 				display.textContent = operate(firstCalcValue,secondCalcValue,operator);
 			}
-			firstCalcValue = parseInt(display.textContent);
+			firstCalcValue = parseFloat(display.textContent);
 			operatorCheck = operator;
 			
 		})
@@ -106,10 +106,33 @@ const clearDisplay = function () {
 	const equals = document.querySelector(".equals");
 	const display = document.querySelector(".display");
 	equals.addEventListener("click", () => {
-		console.log(firstCalcValue);
-		console.log(secondCalcValue);
-		console.log(operator);
 		display.textContent = operate(firstCalcValue,secondCalcValue,operator);
+	})
+ }
+
+ const percentagePressed = function () {
+	const percentage = document.querySelector(".percentage");
+	const display = document.querySelector(".display");
+	percentage.addEventListener("click", () => {
+		display.textContent = display.textContent/100;
+	})
+ }
+
+ const plusMinus = function() {
+	const plusMinus = document.querySelector(".plusMinus");
+	const display = document.querySelector(".display");
+	plusMinus.addEventListener("click", () => {
+		display.textContent = display.textContent*-1;
+	})
+ }
+
+ const addDecimal = function () {
+	const decimal = document.querySelector(".decimal");
+	const display = document.querySelector(".display");
+	decimal.addEventListener("click", () => {
+		if (!display.textContent.includes(".")) {
+			display.textContent += ".";
+		}
 	})
  }
 
@@ -118,3 +141,6 @@ getOperator();
 fillDisplay();
 clearDisplay();
 equalPressed();
+percentagePressed();
+plusMinus();
+addDecimal();

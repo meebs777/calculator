@@ -34,7 +34,7 @@ button {
     align-items: center;
     font-size: 75px;
     letter-spacing: 3px;
-    
+    overflow: hidden;
     
 }
 
