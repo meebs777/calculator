@@ -17,9 +17,7 @@ const multiply = function(a,b) {
   return a*b;
 };
 
-const percentage = function () {
-	display.textContent = display.textContent/100;
-}
+
 
 let displayValue, firstCalcValue = 0 , secondCalcValue = 0, operator;
 let operatorPressed, operatorCheck;
@@ -90,10 +88,12 @@ const clearDisplay = function () {
 			operatorPressed = true;
 			if(operator !== operatorCheck && firstCalcValue !==0) {
 				display.textContent = operate(firstCalcValue,secondCalcValue,operatorCheck);
+				fixOverflow();
 				firstCalcValue = parseFloat(display.textContent);
 			}
 			if (firstCalcValue !== 0 && operator === operatorCheck) {
 				display.textContent = operate(firstCalcValue,secondCalcValue,operator);
+				fixOverflow();
 			}
 			firstCalcValue = parseFloat(display.textContent);
 			operatorCheck = operator;
@@ -107,6 +107,7 @@ const clearDisplay = function () {
 	const display = document.querySelector(".display");
 	equals.addEventListener("click", () => {
 		display.textContent = operate(firstCalcValue,secondCalcValue,operator);
+		fixOverflow();
 	})
  }
 
@@ -118,7 +119,7 @@ const clearDisplay = function () {
 	})
  }
 
- const plusMinus = function() {
+ const plusMinusPressed = function() {
 	const plusMinus = document.querySelector(".plusMinus");
 	const display = document.querySelector(".display");
 	plusMinus.addEventListener("click", () => {
@@ -126,7 +127,7 @@ const clearDisplay = function () {
 	})
  }
 
- const addDecimal = function () {
+ const decimalPressed = function () {
 	const decimal = document.querySelector(".decimal");
 	const display = document.querySelector(".display");
 	decimal.addEventListener("click", () => {
@@ -136,11 +137,21 @@ const clearDisplay = function () {
 	})
  }
 
+ 
+function fixOverflow () {
+	const display = document.querySelector(".display");
+	let numberValue = 0;
+	if (display.textContent.includes(".") && display.textContent.length > 10) {
+		numberValue = parseFloat(display.textContent);
+		display.textContent = numberValue.toFixed(8);
+	}
+}
+
 
 getOperator();
 fillDisplay();
 clearDisplay();
 equalPressed();
 percentagePressed();
-plusMinus();
-addDecimal();
+plusMinusPressed();
+decimalPressed();
