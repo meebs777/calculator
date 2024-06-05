@@ -21,6 +21,7 @@ const multiply = function(a,b) {
 
 let displayValue, firstCalcValue = 0 , secondCalcValue = 0, operator;
 let operatorPressed, operatorCheck;
+let equalsCheck = false;
 
 const operate = function(firstNum,secondNum,operate) {
     let operation;
@@ -84,6 +85,7 @@ const clearDisplay = function () {
 	const display = document.querySelector(".display");
 	operation.forEach((operators) => {
 		operators.addEventListener("click", () => {
+			equalsCheck = true;
 			operator = operators.textContent;
 			operatorPressed = true;
 			if(operator !== operatorCheck && firstCalcValue !==0) {
@@ -106,8 +108,10 @@ const clearDisplay = function () {
 	const equals = document.querySelector(".equals");
 	const display = document.querySelector(".display");
 	equals.addEventListener("click", () => {
+		if (equalsCheck) {
 		display.textContent = operate(firstCalcValue,secondCalcValue,operator);
 		fixOverflow();
+		}
 	})
  }
 
